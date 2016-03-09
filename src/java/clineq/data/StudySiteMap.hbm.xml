@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 6, 2016 3:14:41 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="clineq.data.StudySiteMap" table="STUDY_SITE_MAP" schema="CLINEQ" optimistic-lock="version">
+        <composite-id name="id" class="clineq.data.StudySiteMapId">
+            <key-property name="eqStudyId" type="string">
+                <column name="EQ_STUDY_ID" length="30" />
+            </key-property>
+            <key-property name="eqSiteId" type="string">
+                <column name="EQ_SITE_ID" length="30" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="organizations" class="clineq.data.Organizations" update="false" insert="false" fetch="select">
+            <column name="EQ_SITE_ID" length="30" not-null="true">
+                <comment>FOREIGN KEY</comment>
+            </column>
+        </many-to-one>
+        <property name="lastUpdateDate" type="date">
+            <column name="LAST_UPDATE_DATE" length="7" />
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="30">
+                <comment>VALUES={ACTIVE, INACTIVE}</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 6, 2016 3:14:41 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="clineq.data.Messags" table="MESSAGS" schema="CLINEQ" optimistic-lock="version">
+        <id name="messageId" type="string">
+            <column name="MESSAGE_ID" length="30" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="subjects" class="clineq.data.Subjects" fetch="select">
+            <column name="EQ_SUBJECT_ID" length="50">
+                <comment>This is foreign key of SUBJECT.EQ_SUBJECT_ID</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="users" class="clineq.data.Users" fetch="select">
+            <column name="FROM_USER_ID" length="40">
+                <comment>This is foreign key of USERS.EQ_USER_ID</comment>
+            </column>
+        </many-to-one>
+        <property name="eqStudyId" type="string">
+            <column name="EQ_STUDY_ID" length="30">
+                <comment>This is foreign key of STUDY.EQ_STUDY_ID</comment>
+            </column>
+        </property>
+        <property name="messageType" type="string">
+            <column name="MESSAGE_TYPE" length="20">
+                <comment>TWO VALUES: IN, OUT</comment>
+            </column>
+        </property>
+        <property name="toDestination" type="string">
+            <column name="TO_DESTINATION" length="50">
+                <comment>Not in use now</comment>
+            </column>
+        </property>
+        <property name="sendReceiveDate" type="date">
+            <column name="SEND_RECEIVE_DATE" length="7">
+                <comment>TIMESTAMP</comment>
+            </column>
+        </property>
+        <property name="withUploadDoc" type="string">
+            <column name="WITH_UPLOAD_DOC" length="2">
+                <comment>TWO VALUES: YES, NO</comment>
+            </column>
+        </property>
+        <property name="uploadId" type="string">
+            <column name="UPLOAD_ID" length="50">
+                <comment>IF WITH_UPLOAD_DOC=YES, THIS IS SITE_UPLOAD_ID</comment>
+            </column>
+        </property>
+        <property name="message" type="string">
+            <column name="MESSAGE" length="1000">
+                <comment>CONTENT OF MESSAGE</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

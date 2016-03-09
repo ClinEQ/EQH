@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 6, 2016 3:14:41 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="clineq.data.OrgDetail" table="ORG_DETAIL" schema="CLINEQ" optimistic-lock="version">
+        <composite-id name="id" class="clineq.data.OrgDetailId">
+            <key-property name="eqOrgId" type="string">
+                <column name="EQ_ORG_ID" length="30" />
+            </key-property>
+            <key-property name="itemName" type="string">
+                <column name="ITEM_NAME" length="50" />
+            </key-property>
+            <key-property name="itemStatus" type="string">
+                <column name="ITEM_STATUS" length="20" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="organizations" class="clineq.data.Organizations" update="false" insert="false" fetch="select">
+            <column name="EQ_ORG_ID" length="30" not-null="true" />
+        </many-to-one>
+        <property name="itemValue" type="string">
+            <column name="ITEM_VALUE" length="1000" />
+        </property>
+        <property name="itemDataType" type="string">
+            <column name="ITEM_DATA_TYPE" length="20" />
+        </property>
+        <property name="lastUpdateDate" type="date">
+            <column name="LAST_UPDATE_DATE" length="7" />
+        </property>
+    </class>
+</hibernate-mapping>

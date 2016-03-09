@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 6, 2016 3:14:41 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="clineq.data.SiteLocations" table="SITE_LOCATIONS" schema="CLINEQ" optimistic-lock="version">
+        <id name="eqLocationId" type="string">
+            <column name="EQ_LOCATION_ID" length="30" />
+            <generator class="assigned" />
+        </id>
+        <property name="eqSiteId" type="string">
+            <column name="EQ_SITE_ID" length="30">
+                <comment>foreign key of SITES.EQ_SITE_ID</comment>
+            </column>
+        </property>
+        <property name="sponSiteId" type="string">
+            <column name="SPON_SITE_ID" length="30">
+                <comment>SPONSOR site id in their system</comment>
+            </column>
+        </property>
+        <property name="address1" type="string">
+            <column name="ADDRESS1" length="100" />
+        </property>
+        <property name="address2" type="string">
+            <column name="ADDRESS2" length="100" />
+        </property>
+        <property name="city" type="string">
+            <column name="CITY" length="50" />
+        </property>
+        <property name="state" type="string">
+            <column name="STATE" length="50" />
+        </property>
+        <property name="country" type="string">
+            <column name="COUNTRY" length="100" />
+        </property>
+        <property name="phone" type="string">
+            <column name="PHONE" length="20" />
+        </property>
+        <property name="zip" type="string">
+            <column name="ZIP" length="20" />
+        </property>
+        <property name="emrType" type="string">
+            <column name="EMR_TYPE" length="30">
+                <comment>NOT IN USE</comment>
+            </column>
+        </property>
+        <property name="siteLocationName" type="string">
+            <column name="SITE_LOCATION_NAME" length="100">
+                <comment>EQ GIVE THE NAME OF THE LOCATION</comment>
+            </column>
+        </property>
+        <set name="studyLocationMaps" table="STUDY_LOCATION_MAP" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EQ_LOCATION_ID" length="30" not-null="true" />
+            </key>
+            <one-to-many class="clineq.data.StudyLocationMap" />
+        </set>
+    </class>
+</hibernate-mapping>

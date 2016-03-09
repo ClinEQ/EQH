@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 6, 2016 3:14:41 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="clineq.data.Studies" table="STUDIES" schema="CLINEQ" optimistic-lock="version">
+        <id name="eqStudyId" type="string">
+            <column name="EQ_STUDY_ID" length="50" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="organizationsByEqIwrsId" class="clineq.data.Organizations" fetch="select">
+            <column name="EQ_IWRS_ID" length="30">
+                <comment>FOREIGN KEY OF IWRS.EQ_IWRS_ID</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="organizationsByEqSponId" class="clineq.data.Organizations" fetch="select">
+            <column name="EQ_SPON_ID" length="30">
+                <comment>FOREIGN KEY OF SPONSORS.EQ_SPON_ID</comment>
+            </column>
+        </many-to-one>
+        <property name="eqCoSponId" type="string">
+            <column name="EQ_CO_SPON_ID" length="30">
+                <comment>FOREIGN KEY OF SPONSORS.EQ_CO_SPON_ID</comment>
+            </column>
+        </property>
+        <property name="nctid" type="string">
+            <column name="NCTID" length="20">
+                <comment>ID PROVIDED BY SPONSOR</comment>
+            </column>
+        </property>
+        <property name="euStudyId" type="string">
+            <column name="EU_STUDY_ID" length="50">
+                <comment>FOREIGN KEY OF STUDYS.EQ_STUDY_ID</comment>
+            </column>
+        </property>
+        <property name="studyAname" type="string">
+            <column name="STUDY_ANAME" length="100" />
+        </property>
+        <property name="studyTitle" type="string">
+            <column name="STUDY_TITLE" length="300" />
+        </property>
+        <property name="sponStudyId" type="string">
+            <column name="SPON_STUDY_ID" length="30">
+                <comment>SPONSOR GIVES THE ID IN THEIR SYSTEM</comment>
+            </column>
+        </property>
+        <property name="coSponStudyId" type="string">
+            <column name="CO_SPON_STUDY_ID" length="30">
+                <comment>CO-SPONSOR GIVES THE ID IN THEIR SYSTEM</comment>
+            </column>
+        </property>
+        <property name="studyStartDate" type="date">
+            <column name="STUDY_START_DATE" length="7">
+                <comment>EMPTY</comment>
+            </column>
+        </property>
+        <property name="studyEndDate" type="date">
+            <column name="STUDY_END_DATE" length="7">
+                <comment>EMPTY</comment>
+            </column>
+        </property>
+        <property name="studyEqInitDate" type="date">
+            <column name="STUDY_EQ_INIT_DATE" length="7">
+                <comment>EMPTY</comment>
+            </column>
+        </property>
+        <property name="studyEqCloseDate" type="date">
+            <column name="STUDY_EQ_CLOSE_DATE" length="7">
+                <comment>EMPTY</comment>
+            </column>
+        </property>
+        <property name="plannedPatientsNum" type="big_decimal">
+            <column name="PLANNED_PATIENTS_NUM" precision="22" scale="0">
+                <comment>GIVEN BY SPONSOR</comment>
+            </column>
+        </property>
+        <property name="chartGroupId" type="string">
+            <column name="CHART_GROUP_ID" length="30">
+                <comment>EMPTY</comment>
+            </column>
+        </property>
+        <property name="studyStatus" type="string">
+            <column name="STUDY_STATUS" length="30">
+                <comment>VALUES={DRAFT, ACTIVE, PENDING, SUSPEND, COMPLETE}</comment>
+            </column>
+        </property>
+        <set name="studyUserMaps" table="STUDY_USER_MAP" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EQ_STUDY_ID" length="50" not-null="true">
+                    <comment>FOREIGN KEY</comment>
+                </column>
+            </key>
+            <one-to-many class="clineq.data.StudyUserMap" />
+        </set>
+        <set name="studyChartGroups" table="STUDY_CHART_GROUP" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EQ_STUDY_ID" length="50">
+                    <comment>FOREIGN KEY</comment>
+                </column>
+            </key>
+            <one-to-many class="clineq.data.StudyChartGroup" />
+        </set>
+        <set name="studySubjectMaps" table="STUDY_SUBJECT_MAP" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EQ_STUDY_ID" length="50" not-null="true">
+                    <comment>FOREIGN KEY</comment>
+                </column>
+            </key>
+            <one-to-many class="clineq.data.StudySubjectMap" />
+        </set>
+        <set name="studyLocationMaps" table="STUDY_LOCATION_MAP" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EQ_STUDY_ID" length="50" not-null="true" />
+            </key>
+            <one-to-many class="clineq.data.StudyLocationMap" />
+        </set>
+        <set name="subjectses" table="SUBJECTS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EQ_STUDY_ID" length="50">
+                    <comment>FOREIGN KEY</comment>
+                </column>
+            </key>
+            <one-to-many class="clineq.data.Subjects" />
+        </set>
+    </class>
+</hibernate-mapping>

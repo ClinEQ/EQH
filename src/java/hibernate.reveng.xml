@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-schema="CLINEQ"/>
+ 
+  <table-filter match-name="STUDY_SITE_MAP"/>
+  <table-filter match-name="STUDY_SUBJECT_MAP"/> 
+  <table-filter match-name="STUDIES"/>
+  <table-filter match-name="ORG_DETAIL"/>
+  <table-filter match-name="USERS"/>
+  <table-filter match-name="STUDY_CHART_CATEGORY"/>
+  <table-filter match-name="SUBJECTS"/>
+  <table-filter match-name="ORGANIZATIONS"/>
+  <table-filter match-name="MESSAGS"/>
+  <table-filter match-name="STUDY_LOCATION_MAP"/>
+  <table-filter match-name="STUDY_CHART_GROUP"/>
+  <table-filter match-name="STUDY_USER_MAP"/>
+</hibernate-reverse-engineering>

@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 6, 2016 3:14:41 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="clineq.data.Users" table="USERS" schema="CLINEQ" optimistic-lock="version">
+        <id name="eqUserId" type="string">
+            <column name="EQ_USER_ID" length="40" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="organizations" class="clineq.data.Organizations" fetch="select">
+            <column name="EQ_ORG_ID" length="30">
+                <comment>FOREIGN KEY COULD BE FROM SITES, SPONSORS</comment>
+            </column>
+        </many-to-one>
+        <property name="lname" type="string">
+            <column name="LNAME" length="50" />
+        </property>
+        <property name="fname" type="string">
+            <column name="FNAME" length="50" />
+        </property>
+        <property name="title" type="string">
+            <column name="TITLE" length="160" />
+        </property>
+        <property name="setupDate" type="date">
+            <column name="SETUP_DATE" length="7" />
+        </property>
+        <property name="lastUpdateDate" type="date">
+            <column name="LAST_UPDATE_DATE" length="7" />
+        </property>
+        <property name="address1" type="string">
+            <column name="ADDRESS1" length="140" />
+        </property>
+        <property name="address2" type="string">
+            <column name="ADDRESS2" length="140" />
+        </property>
+        <property name="zip" type="string">
+            <column name="ZIP" length="20" />
+        </property>
+        <property name="phone" type="string">
+            <column name="PHONE" length="36" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="160" />
+        </property>
+        <property name="city" type="string">
+            <column name="CITY" length="70" />
+        </property>
+        <property name="state" type="string">
+            <column name="STATE" length="6" />
+        </property>
+        <property name="country" type="string">
+            <column name="COUNTRY" length="100" />
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="4" />
+        </property>
+        <property name="externalEmployerId" type="string">
+            <column name="EXTERNAL_EMPLOYER_ID" length="60">
+                <comment>EMPTY</comment>
+            </column>
+        </property>
+        <property name="externalDeptName" type="string">
+            <column name="EXTERNAL_DEPT_NAME" length="100">
+                <comment>EMPTY</comment>
+            </column>
+        </property>
+        <property name="userType" type="string">
+            <column name="USER_TYPE" length="20">
+                <comment>VALUES={SPONSOR, SITE, EQ, IWRS}</comment>
+            </column>
+        </property>
+        <property name="userRole" type="string">
+            <column name="USER_ROLE" length="20">
+                <comment>VALUES={RESEARCH NURSE, SITE ADMINISTRATOR, STUDY MANAGER, EQ ANALYST, EQ ADMINISTRATOR}</comment>
+            </column>
+        </property>
+        <property name="userLoginId" type="string">
+            <column name="USER_LOGIN_ID" length="100" />
+        </property>
+        <property name="userLoginPwd" type="string">
+            <column name="USER_LOGIN_PWD" length="30" />
+        </property>
+        <property name="fax" type="string">
+            <column name="FAX" length="20" />
+        </property>
+        <set name="studyUserMaps" table="STUDY_USER_MAP" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EQ_USER_ID" length="40" not-null="true">
+                    <comment>FOREIGN KEY</comment>
+                </column>
+            </key>
+            <one-to-many class="clineq.data.StudyUserMap" />
+        </set>
+        <set name="sysUsageTrackings" table="SYS_USAGE_TRACKING" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EQ_USER_UNIQUE_ID" length="40" />
+            </key>
+            <one-to-many class="clineq.data.SysUsageTracking" />
+        </set>
+        <set name="messagses" table="MESSAGS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FROM_USER_ID" length="40">
+                    <comment>This is foreign key of USERS.EQ_USER_ID</comment>
+                </column>
+            </key>
+            <one-to-many class="clineq.data.Messags" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+    <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+    <property name="hibernate.connection.url">jdbc:oracle:thin:@//localhost:1521/orcl</property>
+    <property name="hibernate.connection.username">clineq</property>
+    <property name="hibernate.connection.password">orcl123</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
+    <mapping resource="clineq/data/OrgDetail.hbm.xml"/>
+    <mapping resource="clineq/data/Subjects.hbm.xml"/>
+    <mapping resource="clineq/data/StudyUserMap.hbm.xml"/>
+    <mapping resource="clineq/data/SysUsageTracking.hbm.xml"/>
+    <mapping resource="clineq/data/Studies.hbm.xml"/>
+    <mapping resource="clineq/data/SiteLocations.hbm.xml"/>
+    <mapping resource="clineq/data/StudySubjectMap.hbm.xml"/>
+    <mapping resource="clineq/data/Messags.hbm.xml"/>
+    <mapping resource="clineq/data/Organizations.hbm.xml"/>
+    <mapping resource="clineq/data/StudyLocationMap.hbm.xml"/>
+    <mapping resource="clineq/data/StudyChartCategory.hbm.xml"/>
+    <mapping resource="clineq/data/StudyChartGroup.hbm.xml"/>
+    <mapping resource="clineq/data/Users.hbm.xml"/>
+    <mapping resource="clineq/data/StudySiteMap.hbm.xml"/>
+
+  </session-factory>
+</hibernate-configuration>

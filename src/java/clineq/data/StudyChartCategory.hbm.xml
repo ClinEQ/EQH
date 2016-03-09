@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 6, 2016 3:14:41 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="clineq.data.StudyChartCategory" table="STUDY_CHART_CATEGORY" schema="CLINEQ" optimistic-lock="version">
+        <id name="chartCategoryId" type="string">
+            <column name="CHART_CATEGORY_ID" length="30" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="studyChartGroup" class="clineq.data.StudyChartGroup" fetch="select">
+            <column name="CHART_GROUP_ID" length="30">
+                <comment>FOREIGN KEY</comment>
+            </column>
+        </many-to-one>
+        <property name="chartCategoryName" type="string">
+            <column name="CHART_CATEGORY_NAME" length="50" />
+        </property>
+        <property name="chartType" type="string">
+            <column name="CHART_TYPE" length="30">
+                <comment>EMPTY</comment>
+            </column>
+        </property>
+        <property name="sysCodeId" type="string">
+            <column name="SYS_CODE_ID" length="30">
+                <comment>EMPTY</comment>
+            </column>
+        </property>
+        <property name="chartCategorySeq" type="big_decimal">
+            <column name="CHART_CATEGORY_SEQ" precision="22" scale="0">
+                <comment>VALUES = {1,2,3,4 .....}</comment>
+            </column>
+        </property>
+        <property name="chartCategoryStatus" type="string">
+            <column name="CHART_CATEGORY_STATUS" length="30">
+                <comment>VALUES = {ACTIVE, INACTIVE}</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>
